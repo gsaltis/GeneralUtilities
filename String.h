@@ -147,4 +147,10 @@ StringListSort
 void
 StringListReverseSort
 (StringList* InStrings);
+
+string
+StringToLowerCase
+(string InString);
+
+
 #endif /* _string_h_*/

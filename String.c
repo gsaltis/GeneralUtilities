@@ -781,3 +781,23 @@ StringListCompareReverse
 {
   return strcmp(* (char * const *) p2, * (char * const *) p1);
 }
+
+/*****************************************************************************!
+ * Function : StringToLowerCase
+ *****************************************************************************/
+string
+StringToLowerCase
+(string InString)
+{
+  int									i, n;
+  string								s;
+
+  n = strlen(InString);
+
+  s = StringCopy(InString);
+  for ( i = 0 ; i < n ; i++ ) {
+	s[i] = tolower(s[i]);
+  }
+  return s;
+}
+
