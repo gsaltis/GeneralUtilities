@@ -1,12 +1,11 @@
 /*****************************************************************************
- * FILE NAME    : FileUtils.h
- * DATE         : March 17 2020
- * PROJECT      : Bay Simulator
+ * FILE NAME    : BytesManage.h
+ * DATE         : June 10 2020
+ * PROJECT      : GBB CAN Devices
  * COPYRIGHT    : Copyright (C) 2020 by Vertiv Company
  *****************************************************************************/
-
-#ifndef _fileutils_h_
-#define _fileutils_h_
+#ifndef _bytesmanage_h_
+#define _bytesmanage_h_
 
 /*****************************************************************************!
  * Global Headers
@@ -20,7 +19,6 @@
 /*****************************************************************************!
  * Local Headers
  *****************************************************************************/
-#include "String.h"
 
 /*****************************************************************************!
  * Exported Macros
@@ -33,40 +31,8 @@
 /*****************************************************************************!
  * Exported Functions
  *****************************************************************************/
-void
-FileUtilsTarFile
-(string InFilename, string InWWWBaseDir);
+uint64_t
+ByteManageSwap8
+(uint64_t InData);
 
-bool
-FileUtilsCopyFile
-(string InFromFilename, string InToFilename);
-
-string
-FilenameExtractSuffix
-(string InFilename);
-
-FILE*
-FileUtilsOpen
-(string InBaseDir, string InFilename, string InFilePermissions);
-
-string
-FilenameExtractBase
-(string InFilename);
-
-bool
-FileExists
-(string InFilename);
-
-void
-GetFileLines
-(char* InBuffer, int InBufferSize, char*** InLines, int* InLinesCount);
-
-bool
-GetFileBuffer
-(char* InFilename, char** InBuffer, int* InBufferSize);
-
-bool
-FileCreateEmptyFile
-(string InFilename);
-
-#endif /* _fileutils_h_*/
+#endif /* _bytesmanage_h_*/

@@ -1,12 +1,9 @@
 /*****************************************************************************
- * FILE NAME    : FileUtils.h
- * DATE         : March 17 2020
- * PROJECT      : Bay Simulator
+ * FILE NAME    : BytesManage.c
+ * DATE         : June 10 2020
+ * PROJECT      : GBB CAN Devices
  * COPYRIGHT    : Copyright (C) 2020 by Vertiv Company
  *****************************************************************************/
-
-#ifndef _fileutils_h_
-#define _fileutils_h_
 
 /*****************************************************************************!
  * Global Headers
@@ -20,53 +17,36 @@
 /*****************************************************************************!
  * Local Headers
  *****************************************************************************/
-#include "String.h"
 
 /*****************************************************************************!
- * Exported Macros
+ * Local Macros
  *****************************************************************************/
 
 /*****************************************************************************!
- * Exported Data
+ * Local Data
  *****************************************************************************/
 
 /*****************************************************************************!
- * Exported Functions
+ * Local Functions
  *****************************************************************************/
-void
-FileUtilsTarFile
-(string InFilename, string InWWWBaseDir);
 
-bool
-FileUtilsCopyFile
-(string InFromFilename, string InToFilename);
+/*****************************************************************************!
+ * Function : ByteManageSwap8
+ *****************************************************************************/
+uint64_t
+ByteManageSwap8
+(uint64_t InData)
+{
+  int					j, i;
+  uint8_t*				data8;
+  uint8_t				data[8];
+  uint64_t*				data64;
+ 
+  data8 = (uint8_t*)&InData;
+  for (j = 7, i = 0; i < 8; i++, j--) {
+    data[j] = data8[i];
+  }
+  data64 = (uint64_t*)data;
+  return *data64;
+}
 
-string
-FilenameExtractSuffix
-(string InFilename);
-
-FILE*
-FileUtilsOpen
-(string InBaseDir, string InFilename, string InFilePermissions);
-
-string
-FilenameExtractBase
-(string InFilename);
-
-bool
-FileExists
-(string InFilename);
-
-void
-GetFileLines
-(char* InBuffer, int InBufferSize, char*** InLines, int* InLinesCount);
-
-bool
-GetFileBuffer
-(char* InFilename, char** InBuffer, int* InBufferSize);
-
-bool
-FileCreateEmptyFile
-(string InFilename);
-
-#endif /* _fileutils_h_*/

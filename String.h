@@ -140,4 +140,11 @@ StringSizedToInteger
 string
 StringFill(char InChar, int InFillSize);
 
+void
+StringListSort
+(StringList* InStrings);
+
+void
+StringListReverseSort
+(StringList* InStrings);
 #endif /* _string_h_*/
