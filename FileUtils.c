@@ -25,8 +25,6 @@
  *****************************************************************************/
 #include "String.h"
 #include "MemoryManager.h"
-#include "DirManagement.h"
-#include "CANMonLog.h"
 #include "ascii.h"
 
 /*****************************************************************************!
