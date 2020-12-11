@@ -1,7 +1,7 @@
 /*******************************************************************************
- * FILE		: MemoryManager.h
- * DATE		: May 14 2018
- * PROJECT	: CAN Device Simulator
+ * FILE         : MemoryManager.h
+ * DATE         : May 14 2018
+ * PROJECT      : CAN Device Simulator
  *******************************************************************************/
 #ifndef _memorymanager_h_
 #define _memorymanager_h_
@@ -10,9 +10,9 @@
  * Exported Type
  *******************************************************************************/
 typedef struct _MMMemoryStats {
-  size_t				BytesAllocated;
-  size_t				BytesFreed;
-} MMMemoryStats;
+  size_t                                BytesAllocated;
+  size_t                                BytesFreed;
+} MemoryStats;
 
 /*******************************************************************************
  * Exported Functions
@@ -25,7 +25,7 @@ FreeMemory(void* InPtr);
 
 void
 GetMemoryStats
-(MMMemoryStats* InStats);
+(MemoryStats* InStats);
 
 #endif // _memorymanager_h_
 

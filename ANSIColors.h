@@ -33,13 +33,18 @@
 #define ColorBrightGreen                "\e[32;1m"
 
 #define ColorYellow                     "\e[33m"
+#define ColorYellowUnderline            "\e[33;4m"
 #define ColorBrightYellow               "\e[33;1m"
 #define ColorBoldYellow                 "\e[1;33m"
+#define ColorBoldYellowReverse          "\e[1;7;33m"
+
 
 #define ColorWhite                      "\e[0;37m"
 
 #define ColorBlue                       "\e[0;34m"
 #define ColorBoldBlue                   "\e[1;34m"
+#define ColorCyan			"\e[0;36m"
+#define ColorBoldCyan			"\e[1;36m"
 
 #define ColorReset                      "\e[0;0m"
 
