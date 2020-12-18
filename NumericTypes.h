@@ -16,23 +16,23 @@
 /*******************************************************************************!
  * Exported Type : uint16bit_t
  *******************************************************************************/
-typedef	union
+typedef union
 {
     uint16_t                            id1;
     struct {
-	unsigned                        highchar1 : 8;
-	unsigned                        lowchar1  : 8;
+        unsigned                        highchar1 : 8;
+        unsigned                        lowchar1  : 8;
     } bitdata1;
 } uint16bit_t;
 
 /*******************************************************************************!
  * Exported Type : ufloatbit32_t
  *******************************************************************************/
-typedef	union
+typedef union
 {
     float                               fd;
     uint16bit_t                         intdata[2];
-    uint8_t				data8[4];
+    uint8_t                             data8[4];
     uint32_t                            data32;
 } ufloatbit32_t;
 
@@ -58,6 +58,10 @@ GetFloatValueFromString
 char*
 ConvertIntToCommaString
 (int InValue, char* InReturnBuffer);
+
+char*
+ConvertLongLongToCommaString
+(long long InValue, char* InReturnBuffer);
 
 #endif // _numerictypes_h_
 

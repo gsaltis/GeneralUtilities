@@ -122,8 +122,8 @@ uint32_t
 GetHex32ValueFromString
 (bool* InStatus, char* InString)
 {
-  uint32_t				n, i, k;
-  int					stringLen;
+  uint32_t                              n, i, k;
+  int                                   stringLen;
 
   stringLen = strlen(InString); 
   n = 0;
@@ -151,8 +151,8 @@ uint64_t
 GetHex64ValueFromString
 (bool* InStatus, char* InString)
 {
-  uint64_t				n, i, k;
-  int					stringLen;
+  uint64_t                              n, i, k;
+  int                                   stringLen;
 
   stringLen = strlen(InString); 
   n = 0;
@@ -226,7 +226,7 @@ char*
 ConvertIntToCommaString
 (int InValue, char* InReturnBuffer)
 {
-  char					s2[32];
+  char                                  s2[32];
   sprintf(s2, "%d", InValue);
   if ( strlen(s2) < 4 ) {
     strcpy(InReturnBuffer, s2);
@@ -239,7 +239,23 @@ ConvertIntToCommaString
 /*******************************************************************************!
  * Function : ConvertIntToCommaString
  *******************************************************************************/
+char*
+ConvertLongLongToCommaString
+(long long InValue, char* InReturnBuffer)
+{
+  char                                  s2[32];
+  sprintf(s2, "%lld", InValue);
+  if ( strlen(s2) < 4 ) {
+    strcpy(InReturnBuffer, s2);
+    return InReturnBuffer;
+  }
+  ConvertIntToCommaString2R(s2, InReturnBuffer);
+  return InReturnBuffer;
+}
 
+/*******************************************************************************!
+ * Function : ConvertIntToCommaString
+ *******************************************************************************/
 void
 ConvertIntToCommaString2R
 (char* InSource, char* InReturn)

@@ -1,26 +1,26 @@
 CC					= gcc
 LIB					= ar
 
-CC_FLAGS			= -g -Wall -c
-LIB_FLAGS			= r
+CC_FLAGS				= -g -Wall -c
+LIB_FLAGS				= r
 
-TARGET				= libutils.a
+TARGET					= libutils.a
 
-OBJS				= $(sort String.o FileUtils.o NumericTypes.o BytesManage.o MemoryManager.o)
+OBJS					= $(sort String.o FileUtils.o NumericTypes.o BytesManage.o MemoryManager.o)
 
 %.o					: %.c
 					  @echo [CC] $<
 					  @$(CC) $(CC_FLAGS) $<
 
-$(TARGET)			: $(OBJS)
+$(TARGET)				: $(OBJS)
 					  @echo [LI] $(TARGET)
 					  @$(LIB) $(LIB_FLAGS) $(TARGET) $(OBJS)
 
-include				  depends.mk
+include					  depends.mk
 
-clean				:
+clean					:
 					  rm -rf $(wildcard *.o *.a)
 
-junkclean			:
+junkclean				:
 					  rm -rf $(wildcard *~)
 

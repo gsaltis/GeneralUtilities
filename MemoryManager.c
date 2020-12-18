@@ -19,7 +19,7 @@
 /*******************************************************************************
  * Local Data
  *******************************************************************************/
-static MMMemoryStats MMStats = { 0 };
+static MemoryStats MMStats = { 0 };
 
 /*******************************************************************************
  * Function : GetMemory
@@ -76,7 +76,7 @@ FreeMemory
 void
 GetMemoryStats
 (
- MMMemoryStats*                         InStats
+ MemoryStats*                         InStats
 )
 {
   if ( NULL == InStats ) {
