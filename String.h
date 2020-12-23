@@ -54,6 +54,10 @@ StringBeginsWith
 (string InString1, string InString2);
 
 bool
+StringEndsWith
+(string InString1, string InString2);
+
+bool
 StringEqualNoCase
 (string InString1, string InString2);
 

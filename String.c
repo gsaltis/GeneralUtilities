@@ -91,6 +91,7 @@ StringNCopy
 
   return returnString;
 }
+
 /*****************************************************************************!
  * Function : StringBeginsWith
  * Purpose  : Check if String1 begins with String2
@@ -117,6 +118,38 @@ StringBeginsWith
         return false;
     }
     return strncmp(InString1, InString2, t2) == 0;
+}
+
+/*****************************************************************************!
+ * Function : StringEndsWith
+ * Purpose  : Check if String1 ends with String2
+ *****************************************************************************/
+bool
+StringEndsWith
+(
+ string                         InString1,
+ string                         InString2
+)
+{
+  int                                   t3;
+    uint32_t                    t1, t2;
+    if ( NULL == InString1 || NULL == InString2 ) {
+        return false;
+    }
+    t1 = strlen(InString1);
+    t2 = strlen(InString2);
+    
+    if ( t1 == 0 || t2 == 0 ) {
+        return false;
+    }
+    
+    if ( t2 > t1 ) {
+        return false;
+    }
+
+    t3 = t1 - t2;
+    
+    return strncmp(&(InString1[t3]), InString2, t2) == 0;
 }
 
 /*****************************************************************************!
@@ -632,7 +665,7 @@ string
 StringFill
 (char InChar, int InSize)
 {
-  string				returnString;
+  string                                returnString;
 
   if (InChar == NUL || InSize == 0) {
     return NULL;
@@ -650,8 +683,8 @@ string
 StringListConcat
 (StringList* InList, string InSeparators)
 {
-  string				returnString;
-  int					i;
+  string                                returnString;
+  int                                   i;
 
   if ( InList == NULL ) {
     return NULL;
@@ -679,8 +712,8 @@ string
 StringMultiConcat
 (string InString1, ...)
 {
-  va_list				args;
-  string				returnString, s;
+  va_list                               args;
+  string                                returnString, s;
 
   if ( NULL == InString1 ) {
     return NULL;
@@ -703,13 +736,13 @@ void
 StringListSort
 (StringList* InStrings)
 {
-  string*								strings;
-  int									size;
-  int									i;
+  string*                                                               strings;
+  int                                                                   size;
+  int                                                                   i;
 
   // If we have and empty list or a list with one item, just return
   if ( NULL == InStrings || 2 > InStrings->stringCount ) {
-	return;
+        return;
   }
 
   size = InStrings->stringCount;
@@ -717,13 +750,13 @@ StringListSort
   // Convert the list to a flat array for qsort
   strings = (string*)GetMemory(sizeof(string) * size);
   for ( i = 0 ; i < size ; i++ ) {
-	strings[i] = InStrings->strings[i];
+        strings[i] = InStrings->strings[i];
   }
 
   qsort(strings, size, sizeof(string), StringListCompare);
 
   for ( i = 0; i < size; i++ ) {
-	InStrings->strings[i] = strings[i];
+        InStrings->strings[i] = strings[i];
   }
 
   FreeMemory(strings);
@@ -736,13 +769,13 @@ void
 StringListReverseSort
 (StringList* InStrings)
 {
-  string*								strings;
-  int									size;
-  int									i;
+  string*                                                               strings;
+  int                                                                   size;
+  int                                                                   i;
 
   // If we have and empty list or a list with one item, just return
   if ( NULL == InStrings || 2 > InStrings->stringCount ) {
-	return;
+        return;
   }
 
   size = InStrings->stringCount;
@@ -750,13 +783,13 @@ StringListReverseSort
   // Convert the list to a flat array for qsort
   strings = (string*)GetMemory(sizeof(string) * size);
   for ( i = 0 ; i < size ; i++ ) {
-	strings[i] = InStrings->strings[i];
+        strings[i] = InStrings->strings[i];
   }
 
   qsort(strings, size, sizeof(string), StringListCompareReverse);
 
   for ( i = 0; i < size; i++ ) {
-	InStrings->strings[i] = strings[i];
+        InStrings->strings[i] = strings[i];
   }
 
   FreeMemory(strings);
@@ -789,14 +822,14 @@ string
 StringToLowerCase
 (string InString)
 {
-  int									i, n;
-  string								s;
+  int                                                                   i, n;
+  string                                                                s;
 
   n = strlen(InString);
 
   s = StringCopy(InString);
   for ( i = 0 ; i < n ; i++ ) {
-	s[i] = tolower(s[i]);
+        s[i] = tolower(s[i]);
   }
   return s;
 }
