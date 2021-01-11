@@ -6,7 +6,7 @@ LIB_FLAGS				= r
 
 TARGET					= libutils.a
 
-OBJS					= $(sort String.o FileUtils.o NumericTypes.o BytesManage.o MemoryManager.o)
+OBJS					= $(sort json.o StringUtils.o JSONIF.o JSONOut.o FileUtils.o NumericTypes.o BytesManage.o MemoryManager.o)
 
 %.o					: %.c
 					  @echo [CC] $<

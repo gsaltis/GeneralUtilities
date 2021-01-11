@@ -23,7 +23,7 @@
 /*****************************************************************************!
  * Local Headers
  *****************************************************************************/
-#include "String.h"
+#include "StringUtils.h"
 #include "MemoryManager.h"
 #include "ascii.h"
 
@@ -174,16 +174,16 @@ string
 FilenameExtractBase
 (string InFilename)
 {
-  string								s;
+  string                                                                s;
   int                                   n;
 
   s = strchr(InFilename, '.');
   if ( s == NULL ) {
-	return StringCopy(InFilename);
+        return StringCopy(InFilename);
   }
 
   if ( s == InFilename ) {
-	return NULL;
+        return NULL;
   }
 
   n = s - InFilename;
@@ -198,7 +198,7 @@ bool
 FileCreateEmptyFile
 (string InFilename)
 {
-  FILE*					file;
+  FILE*                                 file;
 
   file = fopen(InFilename, "wb");
   if ( NULL == file ) {

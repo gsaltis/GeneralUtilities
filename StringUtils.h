@@ -1,11 +1,11 @@
 /*****************************************************************************
- * FILE NAME    : String.h
+ * FILE NAME    : StringUtils.h
  * DATE         : January 15 2019
  * PROJECT      : Bay Simulator
  * COPYRIGHT    : Copyright (C) 2019 by Vertiv Company
  *****************************************************************************/
-#ifndef _string_h_
-#define _string_h_
+#ifndef _stringutils_h_
+#define _stringutils_h_
 
 /*****************************************************************************!
  * Global Headers
@@ -157,4 +157,4 @@ StringToLowerCase
 (string InString);
 
 
-#endif /* _string_h_*/
+#endif /* _stringutils_h_*/

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * FILE NAME    : String.c
+ * FILE NAME    : StringUtils.c
  * DATE         : January 15 2019
  * PROJECT      : Bay Simulator
  * COPYRIGHT    : Copyright (C) 2019 by Vertiv Company
@@ -19,7 +19,7 @@
 /*****************************************************************************!
  * Local Headers
  *****************************************************************************/
-#include "String.h"
+#include "StringUtils.h"
 #include "MemoryManager.h"
 #include "ascii.h"
 
