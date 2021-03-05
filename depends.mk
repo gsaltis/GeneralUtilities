@@ -1,7 +1,8 @@
 BytesManage.o: BytesManage.c
 FilenameExtractSuffix.o: FilenameExtractSuffix.c
 FileUtils.o: FileUtils.c StringUtils.h MemoryManager.h ascii.h \
- FileUtilsOpen.c FilenameExtractSuffix.c FileUtilsCopyFile.c
+ FileUtilsOpen.c FilenameExtractSuffix.c FileUtilsCopyFile.c \
+ FileUtilsTarFile.c
 FileUtilsCopyFile.o: FileUtilsCopyFile.c
 FileUtilsOpen.o: FileUtilsOpen.c
 FileUtilsTarFile.o: FileUtilsTarFile.c

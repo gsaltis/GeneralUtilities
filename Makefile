@@ -2,7 +2,7 @@ CC					= gcc
 LIB					= ar
 INSTALL					= cp
 
-CC_FLAGS				= -g -Wall -c
+CC_FLAGS				= -g -Wall -c -DNEED_FILE_UTILS_TAR_FILE_C
 LIB_FLAGS				= r
 
 INSTALL_DIR_LIBS			= /usr/local/lib

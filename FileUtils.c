@@ -211,6 +211,4 @@ FileCreateEmptyFile
 #include "FileUtilsOpen.c"
 #include "FilenameExtractSuffix.c"
 #include "FileUtilsCopyFile.c"
-#ifdef NEED_FILE_UTILS_TAR_FILE_C
 #include "FileUtilsTarFile.c"
-#endif

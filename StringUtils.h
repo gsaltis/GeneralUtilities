@@ -156,5 +156,24 @@ string
 StringToLowerCase
 (string InString);
 
+void
+TrimEndOfLine
+(char* InString);
+
+char*
+TrimStartOfLine
+(char* InString);
+
+char*
+TrimLine
+(char* InString);
+
+bool
+GetBoolFromString
+(char* InString);
+
+int
+StringToFloat
+(char* InString);
 
 #endif /* _stringutils_h_*/
