@@ -13,7 +13,7 @@ TARGET					= libutils.a
 OBJS					= $(sort json.o StringUtils.o JSONIF.o JSONOut.o FileUtils.o NumericTypes.o BytesManage.o MemoryManager.o)
 
 HEADERS					= FileUtils.h StringUtils.h ANSIColors.h BytesManage.h \
-					  JSONIF.h MemoryManager.h NumericTypes.h json.h ascii.h \
+					  JSONIF.h MemoryManager.h NumericTypes.h json.h ascii.h JSONOut.h \
 
 %.o					: %.c
 					  @echo [CC] $<
