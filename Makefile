@@ -9,6 +9,8 @@ INSTALL_DIR_LIBS			= /usr/local/lib
 INSTALL_DIR_HEADERS			= /usr/local/include
 
 TARGET					= libutils.a
+TEST_TARGET				= UnitTest
+TEST_SOURCE				= $(TEST_TARGET).c
 
 OBJS					= $(sort json.o StringUtils.o JSONIF.o JSONOut.o FileUtils.o NumericTypes.o BytesManage.o MemoryManager.o)
 
@@ -19,9 +21,15 @@ HEADERS					= FileUtils.h StringUtils.h ANSIColors.h BytesManage.h \
 					  @echo [CC] $<
 					  @$(CC) $(CC_FLAGS) $<
 
+all					: $(TARGET) $(TEST_TARGET)
+
 $(TARGET)				: $(OBJS)
 					  @echo [LI] $(TARGET)
 					  @$(LIB) $(LIB_FLAGS) $(TARGET) $(OBJS)
+
+$(TEST_TARGET)				: $(TEST_SOURCE) $(TARGET)
+				          @echo [LD] $(TEST_TARGET)
+					  $(CC) -g $(TEST_SOURCE) -o $(TEST_TARGET) -L.  -lutils
 
 install					: $(TARGET)
 					  $(INSTALL) $(TARGET) $(INSTALL_DIR_LIBS)

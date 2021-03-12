@@ -33,6 +33,22 @@
 /*****************************************************************************!
  * Exported Functions
  *****************************************************************************/
+string
+FileGetFileSuffix
+(string InFilename);
+
+string
+FileGetBaseFilename
+(string InFilename);
+
+string
+FileGetFilename
+(string InFilename);
+
+string
+FileGetFileDirectory
+(string InFilename);
+
 int
 FileUtilsTarFile
 (string InFilename, string InWWWBaseDirName, string InCurrentDirName, string InInstallDirName);

@@ -212,3 +212,8 @@ FileCreateEmptyFile
 #include "FilenameExtractSuffix.c"
 #include "FileUtilsCopyFile.c"
 #include "FileUtilsTarFile.c"
+#include "FileGetFileDirectory.c"
+#include "FileGetFilename.c"
+#include "FileGetBaseFilename.c"
+
+#include "FileGetFileSuffix.c"

@@ -1,8 +1,12 @@
 BytesManage.o: BytesManage.c
+FileGetBaseFilename.o: FileGetBaseFilename.c
+FileGetFileDirectory.o: FileGetFileDirectory.c
+FileGetFilename.o: FileGetFilename.c
 FilenameExtractSuffix.o: FilenameExtractSuffix.c
 FileUtils.o: FileUtils.c StringUtils.h MemoryManager.h ascii.h \
  FileUtilsOpen.c FilenameExtractSuffix.c FileUtilsCopyFile.c \
- FileUtilsTarFile.c
+ FileUtilsTarFile.c FileGetFileDirectory.c FileGetFilename.c \
+ FileGetBaseFilename.c
 FileUtilsCopyFile.o: FileUtilsCopyFile.c
 FileUtilsOpen.o: FileUtilsOpen.c
 FileUtilsTarFile.o: FileUtilsTarFile.c
@@ -12,3 +16,4 @@ JSONOut.o: JSONOut.c JSONOut.h StringUtils.h MemoryManager.h
 MemoryManager.o: MemoryManager.c MemoryManager.h
 NumericTypes.o: NumericTypes.c
 StringUtils.o: StringUtils.c StringUtils.h MemoryManager.h ascii.h
+UnitTest.o: UnitTest.c StringUtils.h FileUtils.h MemoryManager.h
