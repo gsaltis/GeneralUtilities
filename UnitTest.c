@@ -31,6 +31,22 @@ main
   assert(StringEqual(s2, "c"));
 
 
+  s = "/usr/test.c.2";
+
+  s2 = FileGetFilename(s);
+  assert(StringEqual(s2, "test.c.2"));
+
+  s2 = FileGetBaseFilename(s);
+  assert(StringEqual(s2, "test"));
+
+  s2 = FileGetFileDirectory(s);
+  assert(StringEqual(s2, "/usr/"));
+
+  s2 = FileGetFileSuffix(s);
+  assert(StringEqual(s2, "c.2"));
+
+
+
 
   s = "test.c";
   s2 = FileGetFilename(s);

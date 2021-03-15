@@ -2,11 +2,12 @@ BytesManage.o: BytesManage.c
 FileGetBaseFilename.o: FileGetBaseFilename.c
 FileGetFileDirectory.o: FileGetFileDirectory.c
 FileGetFilename.o: FileGetFilename.c
+FileGetFileSuffix.o: FileGetFileSuffix.c
 FilenameExtractSuffix.o: FilenameExtractSuffix.c
 FileUtils.o: FileUtils.c StringUtils.h MemoryManager.h ascii.h \
  FileUtilsOpen.c FilenameExtractSuffix.c FileUtilsCopyFile.c \
  FileUtilsTarFile.c FileGetFileDirectory.c FileGetFilename.c \
- FileGetBaseFilename.c
+ FileGetBaseFilename.c FileGetFileSuffix.c
 FileUtilsCopyFile.o: FileUtilsCopyFile.c
 FileUtilsOpen.o: FileUtilsOpen.c
 FileUtilsTarFile.o: FileUtilsTarFile.c

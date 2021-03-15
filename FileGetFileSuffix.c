@@ -6,24 +6,24 @@ FileGetFileSuffix
 (string InFilename)
 {
   string				s;
-  int					i, n;
 
+  s = strrchr(InFilename, '/');
+
+  // Get the start of the filename
+  if ( NULL == s ) {
+    s = InFilename;
+  } else {
+    s++;
+  }
   if ( NULL == InFilename ) {
     return NULL;
   }
 
-  n = strlen(InFilename);
-
-  for (i = n - 1 ; i >= 0 ; i-- ) {
-    if ( InFilename[i] == '.' ) {
-      break;
-    } 
-  }
-  if ( i < 0 ) {
+  s = strchr(s, '.');
+  if ( s == NULL ) {
     return NULL;
   }
-  i++;
-  s = InFilename + i;
+  s++;
 
   return StringCopy(s);
 }
