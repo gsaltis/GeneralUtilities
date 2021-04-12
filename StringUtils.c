@@ -579,6 +579,9 @@ StringListDestroy
     for ( i = 0; i < InStringList->stringCount; i++ ) {
         FreeMemory(InStringList->strings[i]);
     }
+    if ( i > 0 ) {
+      FreeMemory(InStringList->strings);
+    }
     FreeMemory(InStringList);
 }
 
