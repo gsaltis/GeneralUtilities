@@ -51,7 +51,7 @@ JSONIFGetString
     return NULL;
   }
 
-  for ( i = 0 ; i < InValue->u.object.length ; i++ ) {
+  for ( i = 0 ; i < (int)InValue->u.object.length ; i++ ) {
     json_object_entry*                  entry;
 
     entry = &(InValue->u.object.values[i]);
@@ -84,7 +84,7 @@ JSONIFGetBool
     return false;
   }
 
-  for ( i = 0 ; i < InValue->u.object.length ; i++ ) {
+  for ( i = 0 ; i < (int)InValue->u.object.length ; i++ ) {
     json_object_entry*                  entry;
 
     entry = &(InValue->u.object.values[i]);
@@ -116,7 +116,7 @@ JSONIFGetFloat
     return 0;
   }
 
-  for ( i = 0 ; i < InValue->u.object.length ; i++ ) {
+  for ( i = 0 ; i < (int)InValue->u.object.length ; i++ ) {
     json_object_entry*                  entry;
 
     entry = &(InValue->u.object.values[i]);
@@ -148,7 +148,7 @@ JSONIFGetInt
     return 0;
   }
 
-  for ( i = 0 ; i < InValue->u.object.length ; i++ ) {
+  for ( i = 0 ; i < (int)InValue->u.object.length ; i++ ) {
     json_object_entry*                  entry;
 
     entry = &(InValue->u.object.values[i]);
@@ -179,7 +179,7 @@ JSONIFGetValue
     return NULL;
   }
 
-  for ( i = 0 ; i < InValue->u.object.length ; i++ ) {
+  for ( i = 0 ; i < (int)InValue->u.object.length ; i++ ) {
     json_object_entry*                  entry;
 
     entry = &(InValue->u.object.values[i]);
@@ -208,7 +208,7 @@ JSONIFGetObject
     return NULL;
   }
 
-  for ( i = 0 ; i < InValue->u.object.length ; i++ ) {
+  for ( i = 0 ; i < (int)InValue->u.object.length ; i++ ) {
     json_object_entry*                  entry;
 
     entry = &(InValue->u.object.values[i]);
@@ -240,7 +240,7 @@ JSONIFGetArray
     return NULL;
   }
 
-  for ( i = 0 ; i < InValue->u.object.length ; i++ ) {
+  for ( i = 0 ; i < (int)InValue->u.object.length ; i++ ) {
     json_object_entry*                  entry;
 
     entry = &(InValue->u.object.values[i]);
@@ -279,7 +279,7 @@ JSONIFGetStringList
   }
 
   strings = StringListCreate();
-  for ( i = 0; i < value->u.array.length; i++ ) {
+  for ( i = 0; i < (int)value->u.array.length; i++ ) {
     v = value->u.array.values[i];
     if ( v->type != json_string ) {
       continue;

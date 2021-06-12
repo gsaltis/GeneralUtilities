@@ -19,6 +19,7 @@
  * Local Headers
  *****************************************************************************/
 #include "StringUtils.h"
+#include "json.h"
 
 /*****************************************************************************!
  * Exported Macros
@@ -85,13 +86,21 @@ typedef struct _JSONOutObject JSONOutObject;
 /*****************************************************************************!
  * Exported Functions
  *****************************************************************************/
+int
+JSONOutGetBool
+(JSONOut* InJSON, string InName);
+
 void
 JSONOutSetName
 (JSONOut* InJSON, string InName);
 
 string
 JSONOutToString
-(JSONOut* InObject, uint32_t InIndent);
+(JSONOut* InObject, uint32_t InIndent, uint32_t InIndentChild);
+
+JSONOut*
+JSONOutFromString
+(string InString);
 
 //!
 void
@@ -104,7 +113,7 @@ JSONOutObjectAppend
 
 JSONOutObject*
 JSONOutObjectCreate
-();
+(void);
 
 //!
 void
@@ -117,7 +126,7 @@ JSONOutArrayAppend
 
 JSONOutArray*
 JSONOutArrayCreate
-();
+(void);
 
 //!
 JSONOut*
@@ -150,7 +159,7 @@ JSONOutCreateArray
 
 JSONOut*
 JSONOutCreateBool
-(string InTag, bool InBool);
+(string InTag, int InBool);
 
 JSONOut*
 JSONOutCreateString
@@ -161,7 +170,51 @@ JSONOutCreateInt
 (string InTag, uint32_t InInt);
 
 JSONOut*
+JSONOutCreateFloat
+(string InTag, double InInt);
+
+JSONOut*
 JSONOutCreateLongLong
 (string InTag, uint64_t InLongLong);
+
+void
+JSONOutDump
+(JSONOut* InJSONOut, int InIndent);
+
+void
+JSONOutDumpFile
+(JSONOut* InJSONOut, int InIndent, string InFilename);
+
+void
+JSONOutDumpToFile
+(JSONOut* InJSONOut, int InIndent, FILE* InFile);
+
+JSONOut*
+JSONOutFromJSONValue
+(json_value* InJSON, string InTag);
+
+JSONOut*
+JSONOutFind
+(JSONOut* InValue, string InName);
+
+string
+JSONOutTypeToString
+(JSONOutType InType);
+
+string
+JSONOutFindString
+(JSONOut* InJSON, string InTag);
+
+JSONOut*
+JSONArrayFromString
+(string InString);
+
+bool
+JSONOutObjectContainsTag
+(JSONOut* InJSON, string InTag);
+
+int
+JSONOutToBool
+(JSONOut* InJSON);
 
 #endif /* _jsonout_h_*/

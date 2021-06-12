@@ -117,7 +117,7 @@ StringBeginsWith
     if ( t2 > t1 ) {
         return false;
     }
-    return strncmp(InString1, InString2, t2) == 0;
+    return strncmp(InString1, InString2, t1) == 0;
 }
 
 /*****************************************************************************!
@@ -277,7 +277,11 @@ StringIsInteger
     if ( NULL == InString ) {
         return false;
     }
-    for (s = InString; *s; s++) {
+    s = InString;
+    if ( *s == '-' || *s == '+' ) {
+      s++;
+    }
+    for ( ; *s; s++) {
         if ( !isdigit(*s) ) {
             return false;
         }
@@ -366,8 +370,11 @@ StringConcatTo
 {
     uint32_t                            n;
     string                              returnString;
-    if ( NULL == InString1 || NULL == InString2 ) {
+    if ( NULL == InString2 ) {
         return NULL;
+    }
+    if ( NULL == InString1 ) {
+      return StringCopy(InString2);
     }
     n = strlen(InString1) + strlen(InString2);
     returnString = (string)GetMemory(n + 1);
@@ -383,7 +390,7 @@ bool
 StringContainsChar
 (
  string                         InString,
- char                           InChar
+ int                            InChar
 )
 {
     if ( NULL == InString ) {
@@ -432,7 +439,7 @@ StringSplit
 (
  string                         InString,
  string                         InDividers,
- bool                           InSkipEmpty
+ int                            InSkipEmpty
 )
 {
     string                              s;
@@ -450,7 +457,7 @@ StringSplit
     list = StringListCreate();
     while (true) {
         // Skip dividers
-        while (StringContainsChar(InDividers, *start) && *start) {
+      while (StringContainsChar(InDividers, *start) && *start) {
             start++;
         }
 
@@ -579,7 +586,7 @@ StringListDestroy
     for ( i = 0; i < InStringList->stringCount; i++ ) {
         FreeMemory(InStringList->strings[i]);
     }
-    if ( i > 0 ) {
+    if ( InStringList->stringCount > 0 ) {
       FreeMemory(InStringList->strings);
     }
     FreeMemory(InStringList);
@@ -666,15 +673,15 @@ StringEqualsOneOf
  *****************************************************************************/
 string
 StringFill
-(char InChar, int InSize)
+(int InChar, int InSize)
 {
   string                                returnString;
 
   if (InChar == NUL || InSize == 0) {
     return NULL;
   }
-  returnString = (string)GetMemory(InSize + 1);
-  memset(returnString, InChar, InSize);
+  returnString = (string)GetMemory((size_t)(InSize + 1));
+  memset(returnString, InChar, (size_t)InSize);
   returnString[InSize] = NUL;
   return returnString;
 }
@@ -694,7 +701,7 @@ StringListConcat
   }
   returnString = "";
 
-  for (i = 0; i < InList->stringCount; i++) {
+  for (i = 0; i < (int)InList->stringCount; i++) {
     if ( returnString ) {
       if ( InSeparators ) {
         returnString = StringConcatTo(returnString, InSeparators);
@@ -756,7 +763,7 @@ StringListSort
         strings[i] = InStrings->strings[i];
   }
 
-  qsort(strings, size, sizeof(string), StringListCompare);
+  qsort(strings, (size_t)size, sizeof(string), StringListCompare);
 
   for ( i = 0; i < size; i++ ) {
         InStrings->strings[i] = strings[i];
@@ -789,7 +796,7 @@ StringListReverseSort
         strings[i] = InStrings->strings[i];
   }
 
-  qsort(strings, size, sizeof(string), StringListCompareReverse);
+  qsort(strings, (size_t)size, sizeof(string), StringListCompareReverse);
 
   for ( i = 0; i < size; i++ ) {
         InStrings->strings[i] = strings[i];
@@ -885,7 +892,7 @@ TrimStartOfLine
 
   // Copy everything from the first non space character
   n = strlen(start);
-  s = (char*)malloc(n + 1);
+  s = (char*)malloc((size_t)(n + 1));
   strcpy(s, start);
   return s;
 }
@@ -952,15 +959,15 @@ StringToFloat
     period++;
   }
   n = period - start;
-  intPart = (char*)malloc(n + 1);
-  strncpy(intPart, start, n);
+  intPart = (char*)malloc((size_t)(n + 1));
+  strncpy(intPart, start, (size_t)n);
   intPart[n] = 0x00;
 
   if ( *period == '.' ) {
     period++;
     n = strlen(period);
-    decPart = (char*)malloc(n + 1);
-    strncpy(decPart, period, n);
+    decPart = (char*)malloc((size_t)(n + 1));
+    strncpy(decPart, period, (size_t)n);
     decPart[n] = 0x00;
   }
 
@@ -982,4 +989,65 @@ StringToFloat
 }
 
 
+/*****************************************************************************!
+ * Function : StringConvertNonHTML
+ *****************************************************************************/
+string
+StringConvertNonHTML
+(string InString)
+{
+  string                                s;
+  char                                  c;
+  int                                   i;
+  int                                   startChar;
+  int                                   n;
+  string                                returnString;
 
+  if ( NULL == InString ) {
+    return NULL;
+  }
+  
+  n = strlen(InString);
+
+  returnString = NULL;
+  startChar = 0;
+  for ( i = 0 ; i < n ; i++ ) {
+    c = InString[i];
+    if ( c == '&' || c == '\'' || c == '"' || c == '<' || c == '>' || c == ' ' ) {
+      if ( startChar < i ) {
+        s = StringNCopy(&(InString[startChar]), (uint32_t)(i - startChar));
+        returnString = StringConcatTo(returnString, s);
+        FreeMemory(s);
+      }
+      startChar = i+1;
+      switch (c) {
+        case '"' :
+          returnString = StringConcatTo(returnString, "%22");
+          break;
+        case '\'' :
+          returnString = StringConcatTo(returnString, "%27");
+          break;
+        case '&' :
+          returnString = StringConcatTo(returnString, "%26");
+          break;
+        case '<' :
+          returnString = StringConcatTo(returnString, "%3C");
+          break;
+        case '>' :
+          returnString = StringConcatTo(returnString, "%3E");
+          break;
+        case ' ' :
+          returnString = StringConcatTo(returnString, "%20");
+          break;
+      }
+      continue;
+    }
+  }
+  if ( startChar < n ) {
+    s = StringNCopy(&(InString[startChar]), (uint32_t)(i - startChar));
+    returnString = StringConcatTo(returnString, s);
+    FreeMemory(s);
+  }
+  return returnString;
+}
+  

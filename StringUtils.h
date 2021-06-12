@@ -103,15 +103,15 @@ StringReplaceChar
 
 StringList*
 StringSplit
-(string InString, string InDividers, bool InSkipEmpty);
+(string InString, string InDividers, int InSkipEmpty);
 
 bool
 StringContainsChar
-(string InString, char InChar);
+(string InString, int InChar);
 
 StringList*
 StringListCreate
-();
+(void);
 
 void
 StringListAppend
@@ -142,7 +142,7 @@ StringSizedToInteger
 (string InString, int size); 
 
 string
-StringFill(char InChar, int InFillSize);
+StringFill(int InChar, int InFillSize);
 
 void
 StringListSort
@@ -175,5 +175,9 @@ GetBoolFromString
 int
 StringToFloat
 (char* InString);
+
+string
+StringConvertNonHTML
+(string InString);
 
 #endif /* _stringutils_h_*/
