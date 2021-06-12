@@ -19,7 +19,6 @@
 #include "JSONOut.h"
 #include "MemoryManager.h"
 #include "json.h"
-#include "trace.h"
 
 /*****************************************************************************!
  * Local Macros

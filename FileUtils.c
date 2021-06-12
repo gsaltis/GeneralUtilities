@@ -318,3 +318,104 @@ FileUtilsOpen
 
   return file;
 }
+
+/*****************************************************************************!
+ * Function : FileGetBaseFilename
+ * Purpose  : Return just the base part of name w/o the directory or suffix
+ *****************************************************************************/
+string
+FileGetBaseFilename
+(string InFilename)
+{
+  int                                   m;
+  string                                suffixStart, baseStart;
+  
+  baseStart = strrchr(InFilename, '/');
+  if ( NULL == baseStart ) {
+    baseStart = InFilename;
+  } else {
+    baseStart++;
+  }
+  suffixStart = strchr(baseStart, '.');
+  if ( suffixStart == NULL ) {
+    return StringCopy(baseStart);
+  }
+  m = suffixStart - baseStart;
+  return StringNCopy(baseStart, m); 
+}
+
+/*****************************************************************************!
+ * Function : FileGetFilename
+ * Purpose  : Return the filename portion of a path without the directory name  
+ *****************************************************************************/
+string
+FileGetFilename
+(string InFilename)
+{
+  string                                s;
+
+  if ( NULL == InFilename ) {
+    return NULL;
+  }
+
+  s = strrchr(InFilename, '/');
+  if ( s == NULL ) {
+    s = InFilename;
+  } else {
+    s++;
+  }
+  return StringCopy(s);
+}
+
+/*****************************************************************************!
+ * Function : FileGetFileDirectory
+ * Purpose  : Return the directory portion of a pathname or "" if no directory
+ *****************************************************************************/
+string
+FileGetFileDirectory
+(string InFilename)
+{
+  string                        s;
+  int                           n;
+  if ( NULL == InFilename ) {
+    return NULL;
+  }
+
+  s = strrchr(InFilename, '/');
+  if ( s == NULL ) {
+    return StringCopy("");
+  }
+
+  n = (s - InFilename) + 1;
+  return StringNCopy(InFilename, n);  
+}
+
+/*****************************************************************************!
+ * Function : FileGetFileSuffix
+ *****************************************************************************/
+string
+FileGetFileSuffix
+(string InFilename)
+{
+  string                                s;
+
+  s = strrchr(InFilename, '/');
+
+  // Get the start of the filename
+  if ( NULL == s ) {
+    s = InFilename;
+  } else {
+    s++;
+  }
+  if ( NULL == InFilename ) {
+    return NULL;
+  }
+
+  s = strchr(s, '.');
+  if ( s == NULL ) {
+    return NULL;
+  }
+  s++;
+
+  return StringCopy(s);
+}
